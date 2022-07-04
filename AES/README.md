@@ -1,5 +1,9 @@
-## The Advanced Encryption Standard (AES)
+# The Advanced Encryption Standard (AES)
 
-In SAS language, you can encrypt a full dataset, and there are a few cryptographic primitives that can be applied at variable level but, in general, you can't perform a variable-level encryption with, for example, the Advanced Encryption Standard (AES).
+This section includes the implementation of the AES in SAS, for performing macrovariable and single dataset variable encryption.
 
-In this project we provide and implementation for the AES in SAS. Several algorithms will be added in near future.
+## Basic-Algorithm
+
+In this section we provide an implementation in SAS of the basic AES algorithm, which transforms a 128-bit message into a 128-bit cryptogram, using a 128, 192 or 256-bit key.
+
+This code is, by itself, useless, because user can't encrypt messages of arbitrary length, and can't derive strong cryptographic keys. Further implementations of [Key Derivation Functions](https://en.wikipedia.org/wiki/Key_derivation_function), [Padding Schemes](https://en.wikipedia.org/wiki/Padding_(cryptography)) and [Block Cypher Modes](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) will be added in the near future.
