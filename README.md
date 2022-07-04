@@ -27,7 +27,7 @@ The aim of this project is to implement a full solution in Base SAS for encrypti
 
 - the implementation of at least one [Message Authentication Code](https://en.wikipedia.org/wiki/Message_authentication_code) that can be used to perform [Authenticated Encryption](https://en.wikipedia.org/wiki/Authenticated_encryption).
 
-The solution must be full implemented in Base SAS, without the need of using another language and/or platform.
+The solution must be fully implemented in Base SAS, without the need of using another language and/or platform.
 
 ### Goals achieved
 
