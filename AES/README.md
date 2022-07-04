@@ -1,8 +1,10 @@
 # The Advanced Encryption Standard (AES)
 
-This section includes the implementation of the AES in SAS, for performing macrovariable and single dataset variable encryption and decryption. An implementation in SAS of the basic AES algorithm is provided, which transforms a 128-bit message into a 128-bit cryptogram, using a 128, 192 or 256-bit key.
+This section includes the implementation of the AES in Base SAS, for performing macrovariable and single dataset variable encryption and decryption. An implementation in SAS of the basic AES algorithm is provided, which transforms a 128-bit message into a 128-bit cryptogram, using a 128, 192 or 256-bit key.
 
 The Advanced Encription Standard (AES) specification can be found [here](https://nvlpubs.nist.gov/nistpubs/fips/nist.fips.197.pdf).
+
+The implementation is 100% Base SAS, without the need of using other languages.
 
 ## Installation
 
