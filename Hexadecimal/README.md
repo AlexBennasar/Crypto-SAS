@@ -2,8 +2,10 @@
 
 This section includes the implementation of several macros that perform checks, operations and conversions over hexadecimal numbers.
 
-## Basic-Algorithm
+## The %xOR macro
 
-In this section we provide an implementation in SAS of the basic AES algorithm, which transforms a 128-bit message into a 128-bit cryptogram, using a 128, 192 or 256-bit key.
+SAS includes a [BXOR function](https://documentation.sas.com/doc/en/vdmmlcdc/8.1/lefunctionsref/p16q5ly3d7dtlen1dkw2v4pctqs4.htm) that returns the bitwise logical EXCLUSIVE OR of two given arguments. However, this function has two limitations:
+- the operands are limited to a value of 0xFFFFFFFF.
+- the output is always decimal (although it can be easily transformed to hexadecimal).
 
-This functionality is the basic block of SAS variable encryption. Further functionalities, as encryption of messages of an arbitrary length, and derivation of strong cryptographic keys are need to achieve that goal. Further implementations of [Key Derivation Functions](https://en.wikipedia.org/wiki/Key_derivation_function), [Padding Schemes](https://en.wikipedia.org/wiki/Padding_(cryptography)) and [Block Cypher Modes](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) will be added in the near future.
+With the **%xOR** macro, the operators can have an arbitrary length, and the output is given in hexadecimal format too, with its length equal to the operators length.
