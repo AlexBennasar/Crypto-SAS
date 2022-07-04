@@ -27,7 +27,9 @@ The aim of this project is to implement a full solution in SAS for encrypting da
 
 - the implementation of at least one [Message Authentication Code](https://en.wikipedia.org/wiki/Message_authentication_code) that can be used to perform [Authenticated Encryption](https://en.wikipedia.org/wiki/Authenticated_encryption).
 
-## The Advanced Encryption Standard (AES)
+### Goals achieved
+
+#### The Advanced Encryption Standard (AES) implemented
 In this project we provide and implementation for the AES in SAS. With it, the user can encrypt macrovariables and dataset variables, without the need of performing full dataset encryption in this last case.
 
 Several algorithms will be added in near future.
