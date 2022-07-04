@@ -13,7 +13,7 @@ There are also [implementations of SAS functions](https://documentation.sas.com/
 
 Unfortunately, those implementations are not enough if the confidentiality of the variable is critical, as they basically rely on [Substitution Cipher](https://en.wikipedia.org/wiki/Substitution_cipher) solutions. Some stronger solution is required to really ensure the data is kept in secret.
 
-## Project goal
+## Project goals
 
 The aim of this project is to implement a full solution in SAS for encrypting data at variable-value level. This includes:
 
