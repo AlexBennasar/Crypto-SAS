@@ -1,4 +1,4 @@
-# Cryptographic algorithms and protocols in SAS language
+# Variable-value encryption in SAS
 
 ## Introduction
 
