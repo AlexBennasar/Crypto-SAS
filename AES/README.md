@@ -20,3 +20,56 @@ Execute all the files under [Crypto-SAS/Hexadecimal](https://github.com/AlexBenn
 ### Step2: AES functions
 
 Execute all the files contained in this folder. This will load several macros needed, and will perform the precomputations required on the [Previous step](https://github.com/AlexBennasar/Crypto-SAS/edit/main/AES/README.md#previous-step).
+
+## Usage
+
+### Cipher operation
+
+To cipher a message, call this macro:
+
+```SAS
+%macro cipherAES
+   (M                  /* Message to be encrypted */
+   ,K                  /* Encryption key */
+   );
+```
+
+- M is a 32-length hexadecimal number (128 bits).
+- K can be a 32, 48 or 64-length hexadecimal number (128, 192 or 256 bits).
+- The returned cryptogram is a 32-length hexadecimal number (128 bits).
+
+### Decipher operation
+
+To decipher a message, call this macro:
+
+```SAS
+%macro invCipherAES
+   (C                  /* Message to be decrypted */
+   ,K                  /* Decryption key */
+   );
+```
+
+- C is a 32-length hexadecimal number (128 bits).
+- K can be a 32, 48 or 64-length hexadecimal number (128, 192 or 256 bits).
+- The returned message is a 32-length hexadecimal number (128 bits).
+
+### Usage in datasets
+
+To cipher or decipher a dataset variable, a tecnique for applying the previous macrofunctions to all the values of that variable is required. For example:
+
+```SAS
+/* Compute cryptograms and store them in macrovar */
+proc sql noprint;
+	select '%cipherAES('||m||','||k||')' into :cryptograms separated by ' ' from testMessages;
+quit;
+
+/* Add computed cryptograms to the original dataset */
+data testMessagesWithCryptogram;
+	set testMessages;
+	c=scan("&cryptograms", _n_);
+run;
+```
+
+## Examples of use
+
+[Crypto-SAS/AES/Test](https://github.com/AlexBennasar/Crypto-SAS/tree/main/AES/Test) contains several usage examples of the macros, using both macrovariables and values stored in dataset variables.
