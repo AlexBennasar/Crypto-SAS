@@ -8,7 +8,7 @@ SAS includes a [BXOR function](https://documentation.sas.com/doc/en/vdmmlcdc/8.1
 - the operands are limited to a value of 0xFFFFFFFF.
 - the output is always decimal (although it can be easily transformed to hexadecimal).
 
-With the [%xOR macro](https://github.com/AlexBennasar/Crypto-SAS/blob/main/Hexadecimal/XOR.sas), the operators can have an arbitrary length, and the output is given in hexadecimal format too, with its length equal to the operators length.
+With the [%xOR macro](https://github.com/AlexBennasar/Crypto-SAS/blob/main/Hexadecimal/XOR.sas), the operators are hexadecimal strings that can have an arbitrary length, and the output is given in hexadecimal format too, with its length equal to the operators length.
 
 ### Usage
 
