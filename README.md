@@ -31,3 +31,6 @@ The aim of this project is to implement a full solution in SAS for encrypting da
 
 #### The Advanced Encryption Standard (AES) implemented
 The cipher and decipher operations of the AES are implemented in [Crypto-SAS/AES](https://github.com/AlexBennasar/Crypto-SAS/tree/main/AES).
+
+### Project history
+[04JUL2022] Initial version. AES implementation completed.
