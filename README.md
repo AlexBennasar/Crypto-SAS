@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In SAS language, you can encrypt a full dataset, and there are a few cryptographic primitives that can be applied at variable level.
+In SAS language, it is possible to encrypt a full dataset, and there are a few cryptographic primitives that can be applied at variable level.
 
 More precisely, with the [encryption providers included in Base SAS](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/secref/n0gzdro5ac3enzn18qbmaqy4liz3.htm), users can:
 - encrypt stored login passwords, using proprietary SAS algorithms and AES with salt (see [PWENCODE Procedure](https://documentation.sas.com/doc/en/pgmsascdc/9.4_3.5/secref/n1vzmasf0tdebfn1xec0k1tevq7q.htm) for more details).
