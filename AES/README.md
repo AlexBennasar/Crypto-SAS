@@ -34,7 +34,7 @@ To cipher a message, call this macro:
    );
 ```
 
-- M is a 32-length hexadecimal number (128 bits).
+- M must be a 32-length hexadecimal number (128 bits).
 - K can be a 32, 48 or 64-length hexadecimal number (128, 192 or 256 bits).
 - The returned cryptogram is a 32-length hexadecimal number (128 bits).
 
@@ -49,7 +49,7 @@ To decipher a message, call this macro:
    );
 ```
 
-- C is a 32-length hexadecimal number (128 bits).
+- C must be a 32-length hexadecimal number (128 bits), result of a previous call to ```%cipherAES```.
 - K can be a 32, 48 or 64-length hexadecimal number (128, 192 or 256 bits).
 - The returned message is a 32-length hexadecimal number (128 bits).
 
