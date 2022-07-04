@@ -17,7 +17,7 @@ Unfortunately, those implementations are not enough if the confidentiality of th
 
 The aim of this project is to implement a full solution in SAS for encrypting data at variable-value level. This includes:
 
-- the implementation of at least (but not limited to) one encryption algorithm, such as the [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard).
+- the implementation of at least one encryption algorithm, such as the [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard).
 
 - the implementation of a Password-based key derivation function, such as [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2).
 
