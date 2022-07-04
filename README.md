@@ -1,4 +1,4 @@
-# Variable-value encryption in SAS
+# Variable-value encryption in Base SAS
 
 ## Introduction
 
@@ -15,7 +15,7 @@ Unfortunately, those implementations are not enough if the confidentiality of th
 
 ## Project goals
 
-The aim of this project is to implement a full solution in SAS for encrypting data at variable-value level. This includes:
+The aim of this project is to implement a full solution in Base SAS for encrypting data at variable-value level. This includes:
 
 - the implementation of at least one encryption algorithm, such as the [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard).
 
@@ -26,6 +26,8 @@ The aim of this project is to implement a full solution in SAS for encrypting da
 - the implementation of at least one [Padding scheme](https://en.wikipedia.org/wiki/Padding_(cryptography)), for those encryption modes that require it.
 
 - the implementation of at least one [Message Authentication Code](https://en.wikipedia.org/wiki/Message_authentication_code) that can be used to perform [Authenticated Encryption](https://en.wikipedia.org/wiki/Authenticated_encryption).
+
+The solution must be full implemented in Base SAS, without the need of using another language and/or platform.
 
 ### Goals achieved
 
