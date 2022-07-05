@@ -29,3 +29,6 @@ Several macros are included in the [HexUtils file](https://github.com/AlexBennas
 /* (0xA512ED125) xor (0x0BB1F5695) = 0xAEA3187B0 */
 %put NOTE: (0x&op1) xor (0x&op2) = 0x&result;
 ```
+
+## Testing
+All the code developed have been tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
