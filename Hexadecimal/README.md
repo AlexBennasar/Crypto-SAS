@@ -31,4 +31,4 @@ Several macros are included in the [HexUtils file](https://github.com/AlexBennas
 ```
 
 ## Testing
-All the code developed have been tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
+All the code developed has been tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
