@@ -35,7 +35,7 @@ The solution must be fully implemented in Base SAS, without the need of using an
 The cipher and decipher operations of the AES are implemented in [Crypto-SAS/AES](https://github.com/AlexBennasar/Crypto-SAS/tree/main/AES).
 
 ## Testing
-The project is tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
+All the code developed have been tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
 
 ## Project history
 **[04JUL2022]** Initial version. AES implementation completed.
