@@ -29,10 +29,13 @@ This project is a work in progress. The aim of this project is to implement a fu
 
 The solution must be fully implemented in Base SAS, without the need of using another language and/or platform.
 
-### Goals achieved
+## Goals achieved
 
 #### The Advanced Encryption Standard (AES) implemented
 The cipher and decipher operations of the AES are implemented in [Crypto-SAS/AES](https://github.com/AlexBennasar/Crypto-SAS/tree/main/AES).
 
-### Project history
+## Testing
+The project is tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
+
+## Project history
 **[04JUL2022]** Initial version. AES implementation completed.
