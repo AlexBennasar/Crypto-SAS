@@ -77,4 +77,4 @@ run;
 [Crypto-SAS/AES/Test](https://github.com/AlexBennasar/Crypto-SAS/tree/main/AES/Test) contains several usage examples of the macros, using both macrovariables and values stored in dataset variables.
 
 ## Testing
-All the code developed have been tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
+All the code developed has been tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
