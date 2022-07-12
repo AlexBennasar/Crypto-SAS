@@ -14,7 +14,8 @@
    
    Date        Programmer        Description
    ---------   ---------------   ----------------------------------------------------
-   04JUL2022   Alex Bennasar     Original version  
+   04JUL2022   Alex Bennasar     Original version 
+   12JUL2022   Alex Bennasar	 Minor errata correction
 *-----------------------------------------------------------------------------------*/
 
 /* Message to be encrypted */
@@ -44,6 +45,6 @@
 %let messageDecrypted192=%invCipherAES(&cryptogram192, &key192);
 %put NOTE: Message decrypted with 192-bit key: &messageDecrypted192;
 
-/* Encryption with a 256-bit key */
+/* Decryption with a 256-bit key */
 %let messageDecrypted256=%invCipherAES(&cryptogram256, &key256);
 %put NOTE: Message decrypted with 256-bit key: &messageDecrypted256;
