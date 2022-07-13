@@ -15,7 +15,7 @@ Unfortunately, those implementations are not enough if the confidentiality of th
 
 ## Project goals
 
-This project is a work in progress. The aim of this project is to implement a full solution in Base SAS for encrypting data at variable-value level. This includes:
+This project is a work in progress. The aim of this project is to implement a full solution in Base SAS for encrypting data at variable-value level. As we are initially interested in a password-based encryption solution, this goal implies the implementation of at least one full [PKCS #5](https://datatracker.ietf.org/doc/html/rfc8018) encryption scheme, including:
 
 - the implementation of at least one encryption algorithm, such as the [Advanced Encryption Standard (AES)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard).
 
