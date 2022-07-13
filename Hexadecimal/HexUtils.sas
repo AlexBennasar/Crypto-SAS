@@ -13,8 +13,8 @@
    Date        Programmer        Description
    ---------   ---------------   ----------------------------------------------------
    04JUL2022   Alex Bennasar     Original version 
-   12JUL2022   Alex Bennasar	 Macros %isNatural, getBase64FromHex and 
-                                 getHexFromBase64 added
+   13JUL2022   Alex Bennasar	 Macros %isNatural, %isBase64, %getBase64FromHex and 
+                                 %getHexFromBase64 added
 *-----------------------------------------------------------------------------------*/
 
 %macro isHex(string);
