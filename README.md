@@ -34,6 +34,9 @@ The solution must be fully implemented in Base SAS, without the need of using an
 #### The Advanced Encryption Standard (AES) implemented
 The cipher and decipher operations of the AES are implemented in [Crypto-SAS/AES](https://github.com/AlexBennasar/Crypto-SAS/tree/main/AES).
 
+#### The Password-Based Key Derivation Function 2 (PBKDF2) implemented
+The PBKDF2 is implemented in [Crypto-SAS/PBKDF2](https://github.com/AlexBennasar/Crypto-SAS/tree/main/PBKDF2). Pseudorandom functions (PRF) supported: HMAC-SHA256
+
 ## Testing
 All the code developed has been tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
 
