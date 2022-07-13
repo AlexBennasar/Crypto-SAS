@@ -43,4 +43,4 @@ All the code developed has been tested in SAS Studio, release 3.8 (SAS release: 
 ## Project history
 **[04JUL2022]** Initial version. AES implementation completed.
 
-**[13JUL2022]** PBKDF2 implementation completed.
+**[13JUL2022]** PBKDF2 implementation completed with one PRF: HMAC-SHA256.
