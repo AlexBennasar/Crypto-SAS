@@ -38,7 +38,7 @@ To derive a key, call this macro:
 
 ## Examples of use
 
-[Crypto-SAS/PBKDF2/Test](hhttps://github.com/AlexBennasar/Crypto-SAS/tree/main/PBKDF2/Test) contains an usage example of the macro.
+[Crypto-SAS/PBKDF2/Test](https://github.com/AlexBennasar/Crypto-SAS/tree/main/PBKDF2/Test) contains an usage example of the macro.
 
 ## Testing
 All the code developed has been tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
