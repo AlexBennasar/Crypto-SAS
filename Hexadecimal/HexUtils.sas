@@ -15,8 +15,8 @@
    04JUL2022   Alex Bennasar     Original version 
    13JUL2022   Alex Bennasar	 Macros %isNatural, %isBase64, %getBase64FromHex and 
                                  %getHexFromBase64 added
-   15JUL2022   Alex Bennasar	 Macros %getBase64, %getHex, %getTextFromBase64 and 
-                                 %getTextFromHex added
+   15JUL2022   Alex Bennasar	 Macros %getBase64, %getHex, %getTextFromBase64, 
+                                 %getTextFromHex and %getHexFromDec added
 *-----------------------------------------------------------------------------------*/
 
 %macro isHex(string);
@@ -103,6 +103,19 @@
 			%return;
 		%end;
 	%sysfunc(inputn(&hexNumber,hex.))
+%mend;
+
+%macro getHexFromDec(decNumber);
+	%if not %isNatural(%superq(decNumber)) %then
+		%do;
+			%put ERROR: [getHexFromDec] Parameter is not a decimal number.;
+			%return;
+		%end;
+	%local numHexDigits;
+	%if &decNumber ne 0 %then
+		%let numHexDigits=%sysevalf(%sysfunc(log(&decNumber))/%sysfunc(log(16))+1,floor);
+	%else %let numHexDigits=1;
+	%sysfunc(putn(&decNumber,hex&numHexDigits..))
 %mend;
 
 %macro getDecFromBin(binNumber);	
