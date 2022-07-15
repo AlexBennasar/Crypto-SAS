@@ -40,6 +40,8 @@ The PBKDF2 is implemented in [Crypto-SAS/PBKDF2](https://github.com/AlexBennasar
 ## Testing
 All the code developed has been tested in SAS Studio, release 3.8 (SAS release: 9.04.01M6P11072018).
 
+Examples of use, mixing all the already developed cryptographic primitives can be found at [Crypto-SAS/Test](https://github.com/AlexBennasar/Crypto-SAS/tree/main/Test)
+
 ## Project history
 **[04JUL2022]** Initial version. AES implementation completed.
 
