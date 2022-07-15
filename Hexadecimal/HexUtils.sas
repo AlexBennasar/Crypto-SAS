@@ -165,7 +165,7 @@
    (=65534*3/(2*4)). It is responsibility of the user to manage these situations.
    */
 %macro getBase64(string);
-	%qsysfunc(cats(%qsysfunc(putc(%superq(string),$base64x65532.))))
+	%getBase64FromHex(%getHex(%superq(string)))
 %mend;
 
 /* Decodes a base64 string back into a text string. The operation is encoding-dependent. */
