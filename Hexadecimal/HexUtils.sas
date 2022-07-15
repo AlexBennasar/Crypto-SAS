@@ -15,6 +15,8 @@
    04JUL2022   Alex Bennasar     Original version 
    13JUL2022   Alex Bennasar	 Macros %isNatural, %isBase64, %getBase64FromHex and 
                                  %getHexFromBase64 added
+   15JUL2022   Alex Bennasar	 Macros %getBase64, %getHex, %getTextFromBase64 and 
+                                 %getTextFromHex added
 *-----------------------------------------------------------------------------------*/
 
 %macro isHex(string);
@@ -154,6 +156,27 @@
 	%qsysfunc(inputc(&hexNumber,$hex&hexL..),$base64x&base64L..)
 %mend;
 
+/* Encodes a text into a base64 string. The operation is encoding-dependent.
+   A SAS macrovar has a maximum length of 65534 bytes. Taking into account that:
+   - a single ASCII char has a length of 1 byte (is extended from its 7 bits to 8 bits). 
+   - other chars can have a length of more than 1 byte, it depends on the encoding.
+   - each 3 bytes are codified as 4 base64 chars.
+   in a worst-case scenario (2 bytes/char), problems may arise with string texts with 24575 chars or more 
+   (=65534*3/(2*4)). It is responsibility of the user to manage these situations.
+   */
+%macro getBase64(string);
+	%qsysfunc(cats(%qsysfunc(putc(%superq(string),$base64x65532.))))
+%mend;
+
+/* Decodes a base64 string back into a text string. The operation is encoding-dependent. */
+%macro getTextFromBase64(base64Number);
+	%if not %isBase64(%superq(base64Number)) %then %do;
+		%put ERROR: [getTextFromBase64] Parameter is not a base64 string.;
+		%return;
+	%end;
+	%qsysfunc(inputc(%superq(base64Number),$base64x.))
+%mend;
+
 /* Encodes each group of 3 bytes (4 base64 digits) into 6 hex digits.
    Parameter must be a multiple-of-4-length base64 string, including, for computing this 
    mandatory length, the final "=" or "==", if present. */
@@ -176,6 +199,27 @@
 	%else %if %qsubstr(&base64Number,%eval(&base64L))=%str(=) %then %let hexL=%eval(&hexL-2);
 		
 	%sysfunc(inputc(&base64Number,$base64x&base64L..),$hex&hexL..)
+%mend;
+
+/* Encodes a text into an hexadecimal string. The operation is encoding-dependent.
+   A SAS macrovar has a maximum length of 65534 bytes. Taking into account that:
+   - a single ASCII char has a length of 1 byte (is extended from its 7 bits to 8 bits). 
+   - other chars can have a length of more than 1 byte, it depends on the encoding.
+   - each byte is codified as 2 hexadecimal chars.
+   in a worst-case scenario (2 bytes/char), problems may arise with string texts with 16383 chars or more 
+   (=65534/(2*2)). It is responsibility of the user to manage these situations.
+   */
+%macro getHex(string);
+	%sysfunc(putc(%superq(string),$hex65532.))
+%mend;
+
+/* Decodes an hexadecimal string back into a text string. The operation is encoding-dependent. */
+%macro getTextFromHex(hexNumber);
+	%if not %isHex(%superq(hexNumber)) %then %do;
+		%put ERROR: [getTextFromHex] Parameter is not an hexadecimal.;
+		%return;
+	%end;
+	%qsysfunc(inputc(%superq(hexNumber),$hex.))
 %mend;
 
 %macro shiftLeft(hexByte);
