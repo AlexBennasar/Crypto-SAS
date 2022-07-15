@@ -14,7 +14,7 @@ With the [%xOR macro](https://github.com/AlexBennasar/Crypto-SAS/blob/main/Hexad
 
 Several macros are included in the [HexUtils file](https://github.com/AlexBennasar/Crypto-SAS/blob/main/Hexadecimal/HexUtils.sas) to perform operations and validations required by others algorithms, included:
 - string hexadecimal validation.
-- conversion between hexadecimal, decimal and binary.
+- conversion between hexadecimal, decimal, binary, base64 and plain text.
 - other operations, like bit shifting.
 
 ## Usage
