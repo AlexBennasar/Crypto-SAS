@@ -15,8 +15,8 @@
    04JUL2022   Alex Bennasar     Original version 
    13JUL2022   Alex Bennasar	 Macros %isNatural, %isBase64, %getBase64FromHex and 
                                  %getHexFromBase64 added
-   15JUL2022   Alex Bennasar	 Macros %getBase64, %getHex, %getTextFromBase64, 
-                                 %getTextFromHex and %getHexFromDec added
+   16JUL2022   Alex Bennasar	 Macros %getBase64, %getHex, %getTextFromBase64, 
+                                 %getTextFromHex, %getHexFromDec and %appendHex added
 *-----------------------------------------------------------------------------------*/
 
 %macro isHex(string);
@@ -233,6 +233,32 @@
 		%return;
 	%end;
 	%qsysfunc(inputc(%superq(hexNumber),$hex.))
+%mend;
+	
+%macro appendHex(base64String,hexToAppend);
+	%if not %isBase64(%superq(base64String)) %then %do;
+		%put ERROR: [appendHex] Parameter is not a base64 string.;
+		%return;
+	%end;
+	%if not %isHex(%superq(hexToAppend)) %then %do;
+		%put ERROR: [appendHex] Parameter is not an hexadecimal.;
+		%return;
+	%end;
+	%if %sysfunc(mod(%length(%superq(hexToAppend)),2)) ne 0 %then %do;
+		%put ERROR: [appendHex] Even number of hex digits (integer number of bytes) required.;
+		%return;	
+	%end;
+	%let base64String=%superq(base64String);
+	
+	%local l lastBytes firstBytes out;
+	%let l=%length(&base64String);
+	/* Last 4 chars. They'll be 3 bytes, or 2 (ends with "=") or 1 (ends with "==") */
+	%let lastBytes=%qsubstr(&base64String,%eval(&l-3));
+	/* Convert to hex */
+	%let lastBytes=%getHexFromBase64(&lastBytes);
+	%if &l>4 %then %let firstBytes=%qsubstr(&base64String,1,%eval(&l-4));
+	%let out=&firstBytes.%getBase64FromHex(&lastBytes&hexToAppend);
+	&out
 %mend;
 
 %macro shiftLeft(hexByte);
