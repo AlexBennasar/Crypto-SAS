@@ -16,6 +16,7 @@
    Date        Programmer        Description
    ---------   ---------------   ----------------------------------------------------
    04JUL2022   Alex Bennasar     Original version  
+   18JUL2022   Alex Bennasar     Bug correction in %getRoundKey. Macrovar i is now local
 *-----------------------------------------------------------------------------------*/
 
 %macro doKeyExpansion(key);
@@ -56,7 +57,7 @@
 %mend;
 
 %macro getRoundKey(keySchedule,round);
-	%local roundKey;
+	%local roundKey i;
 	
 	%do i=1 %to 4;
 		%let roundKey=&roundKey.%scan(&keySchedule,%eval(4*&round+&i));
