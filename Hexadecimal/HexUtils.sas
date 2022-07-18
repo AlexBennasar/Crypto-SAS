@@ -17,6 +17,7 @@
                                  %getHexFromBase64 added
    16JUL2022   Alex Bennasar	 Macros %getBase64, %getHex, %getTextFromBase64, 
                                  %getTextFromHex, %getHexFromDec and %appendHex added
+   18JUL2022   Alex Bennasar	 Macros %lengthBytes and %substrBytes added
 *-----------------------------------------------------------------------------------*/
 
 %macro isHex(string);
@@ -236,7 +237,9 @@
 %mend;
 	
 %macro appendHex(base64String,hexToAppend);
-	%if not %isBase64(%superq(base64String)) %then %do;
+	%local inEmpty l lastBytes firstBytes out;
+	%let inEmpty=%sysevalf(a%superq(base64String)=a, boolean);
+	%if not %isBase64(%superq(base64String)) and not &inEmpty %then %do;
 		%put ERROR: [appendHex] Parameter is not a base64 string.;
 		%return;
 	%end;
@@ -248,9 +251,14 @@
 		%put ERROR: [appendHex] Even number of hex digits (integer number of bytes) required.;
 		%return;	
 	%end;
+	/* If input is empty, only output the hexToAppend, converted to base64 */
+	%if &inEmpty %then %do;
+		%let out=%getBase64FromHex(&hexToAppend);
+		%superq(out)
+		%return;
+	%end;
 	%let base64String=%superq(base64String);
 	
-	%local l lastBytes firstBytes out;
 	%let l=%length(&base64String);
 	/* Last 4 chars. They'll be 3 bytes, or 2 (ends with "=") or 1 (ends with "==") */
 	%let lastBytes=%qsubstr(&base64String,%eval(&l-3));
@@ -258,7 +266,90 @@
 	%let lastBytes=%getHexFromBase64(&lastBytes);
 	%if &l>4 %then %let firstBytes=%qsubstr(&base64String,1,%eval(&l-4));
 	%let out=&firstBytes.%getBase64FromHex(&lastBytes&hexToAppend);
-	&out
+	%superq(out)
+%mend;
+
+%macro substrBytes(base64String,ini,length);
+	%local inLength inLengthBytes last firstPos lastPos substrHex iniOffset;
+	
+	%if not %isBase64(%superq(base64String)) %then %do;
+		%put ERROR: [substrBytes] Parameter is not a base64 string.;
+		%return;
+	%end;
+
+	%let base64String=%superq(base64String);	
+	/*%put NOTE: Original bytes: %getHexFromBase64(&base64String);*/
+	
+	%let inLength=%length(&base64String);
+	%let inLengthBytes=%lengthBytes(&base64String);	
+	/*%put NOTE: Length in bytes: &inLengthBytes;*/
+	
+	/* Missing length in bytes to extract? Extract till the end */
+	%if %sysevalf(a%superq(length)=a, boolean) %then
+		%do;
+			%let length=%eval(&inLengthBytes-&ini+1); 
+		%end;
+	
+	%if not %isNatural(%superq(ini)) or not %isNatural(%superq(length)) %then
+		%do;
+			%put ERROR: [substrBytes] Ini and length must be a natural number.;
+			%return;
+		%end;
+	%if &ini<=0 or &length<=0 %then
+		%do;
+			%put ERROR: [substrBytes] Ini and length must be a positive number.;
+			%return;
+		%end;
+	
+	%let last=%eval(&ini+&length-1);
+	
+	/*%put NOTE: Last byte to extract: &last;*/
+	
+	%if &last>&inLengthBytes %then
+		%do;
+			%put ERROR: [substrBytes] Parameters out of range.;
+			%return;
+		%end;
+	/*%put NOTE: First byte to extract: &ini;*/
+	/* First position to extract from the original base64 string */
+	%let firstPos=%eval(1+4*%sysevalf((&ini-1)/3,floor));
+	/*%put NOTE: First position to extract from the original base64 string: &firstPos;*/
+	/* Last position to extract from the original base64 string */
+	%let lastPos=%eval(1+4*%sysevalf((&last-1)/3,floor)+3);
+	/*%put NOTE: Last position to extract from the original base64 string: &lastPos;*/
+	%let substrHex=%getHexFromBase64(%qsubstr(&base64String,&firstPos,%eval(&lastPos-&firstPos+1)));
+	/*%put NOTE: Substr extracted in hex: &substrHex;*/
+	
+	/* Strip all exceeding bytes extracted */
+	%let iniOffset=%eval(2*%sysfunc(mod(&ini-1,3))+1);
+	/*%put NOTE: Initial Offset: &iniOffset;*/
+	%let substrHex=%substr(&substrHex,&iniOffset,%eval(&length*2));
+	/*%put NOTE: Final result: &substrHex;*/
+%mend;
+
+%macro lengthBytes(base64String);
+	%local inEmpty inLength inLengthBytes;
+	%let inEmpty=%sysevalf(a%superq(base64String)=a, boolean);
+	%if not %isBase64(%superq(base64String)) and not &inEmpty  %then %do;
+		%put ERROR: [lengthBytes] Parameter is not a base64 string.;
+		%return;
+	%end;
+	
+	%if &inEmpty %then %do;
+		0
+		%return;
+	%end;
+
+	%let inLength=%length(&base64String);
+	/* 4 base64 = 3 bytes */
+	%let inLengthBytes=%eval(&inLength/4*3);
+	
+	%if %qsubstr(&base64String, %eval(&inLength-1))=%str(==) %then
+		%let inLengthBytes=%eval(&inLengthBytes-2);
+	%else %if %qsubstr(&base64String, &inLength)=%str(=) %then
+		%let inLengthBytes=%eval(&inLengthBytes-1);	
+		
+	&inLengthBytes
 %mend;
 
 %macro shiftLeft(hexByte);
