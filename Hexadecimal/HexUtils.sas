@@ -325,6 +325,7 @@
 	/*%put NOTE: Initial Offset: &iniOffset;*/
 	%let substrHex=%substr(&substrHex,&iniOffset,%eval(&length*2));
 	/*%put NOTE: Final result: &substrHex;*/
+	&substrHex
 %mend;
 
 %macro lengthBytes(base64String);
